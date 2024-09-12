@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RoadMapBJJ.UI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+27021878774c850ae9d0f80d6e8aa6ed35690190")]
 [assembly: System.Reflection.AssemblyProductAttribute("RoadMapBJJ.UI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RoadMapBJJ.UI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
