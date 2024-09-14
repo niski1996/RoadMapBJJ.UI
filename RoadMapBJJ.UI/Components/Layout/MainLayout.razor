@@ -1,40 +1,51 @@
 ﻿@inherits LayoutComponentBase
 @inject ThemeService ThemeService
+@inject NavigationManager Nav
+@* idk why, required by radzen *@
 @inject CookieThemeService CookieThemeService
 
 <RadzenComponents @rendermode="InteractiveServer"/>
-<div class="page">
-    <div class="sidebar">
-        <NavMenu/>
-    </div>
 
-    <main>
-        <div class="top-row px-4">
+<RadzenLayout>
+    <RadzenHeader>
+        <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" Gap="0">
+            <RadzenSidebarToggle Click="@(() => _sidebarExpanded = !_sidebarExpanded)" />
             <RadzenStack Orientation="Orientation.Horizontal" JustifyContent="JustifyContent.Center" Gap="0.5rem" class="rz-p-sm-2">
                 <RadzenLabel><strong>Theme:</strong></RadzenLabel>
                 @foreach (var theme in Themes.All.Where(x => new[] { "material", "standard", "standard-dark", "dark", "humanistic" }.Contains(x.Value)))
                 {
-                    string icon = ThemeService.Theme == theme.Value ? "check_circle" : "add_circle";
+                string icon = ThemeService.Theme == theme.Value ? "check_circle" : "add_circle";
 
-                    var style = $"background-color: {theme.Base}; color: {theme.Primary}";
-                    <RadzenButton Icon=@icon Style="@style" Click="@(() => ChangeTheme(theme.Value))" ButtonStyle="ButtonStyle.Primary" Size="ButtonSize.Small" class="rz-border-radius-10 rz-shadow-6"/>
+                var style = $"background-color: {theme.Base}; color: {theme.Primary}";
+                <RadzenButton Icon=@icon Style="@style" Click="@(() => ChangeTheme(theme.Value))" ButtonStyle="ButtonStyle.Primary" Size="ButtonSize.Small" class="rz-border-radius-10 rz-shadow-6"/>
                 }
             </RadzenStack>
-        </div>
-
-        <article class="content px-4">
+        </RadzenStack>
+    </RadzenHeader>
+    <RadzenSidebar Responsive="false" Style="width: max-content">
+        <RadzenPanelMenu DisplayStyle="@(_sidebarExpanded ? MenuItemDisplayStyle.IconAndText : MenuItemDisplayStyle.Icon)" ShowArrow="false">
+            <RadzenPanelMenuItem Text="Home" Icon="home" Path=""/>
+            <RadzenPanelMenuItem Text="Trainers" Icon="dashboard" Path=@AppRoutes.Trainers/>
+            <RadzenPanelMenuItem Text="Techniques" Icon="auto_awesome" Path="@AppRoutes.Techniques">
+                <RadzenPanelMenuItem Text="Actions" Icon="color_lens" />
+                <RadzenPanelMenuItem Text="Trasitions" Icon="color_lens" />
+                <RadzenPanelMenuItem Text="Positions" Icon="color_lens" />
+            </RadzenPanelMenuItem>
+            <RadzenPanelMenuItem Text="Settings" Icon="dashboard" />
+        </RadzenPanelMenu>
+    </RadzenSidebar>
+    <RadzenBody>
+        <div class="rz-p-4">
             @Body
-        </article>
-    </main>
-</div>
-
-<div id="blazor-error-ui">
-    An unhandled error has occurred.
-    <a href="" class="reload">Reload</a>
-    <a class="dismiss">🗙</a>
-</div>
+        </div>
+    </RadzenBody>
+    <RadzenFooter>
+        Footer
+    </RadzenFooter>
+</RadzenLayout>
 
 @code{
+    private bool _sidebarExpanded = true;
 
     void ChangeTheme(string value)
     {
