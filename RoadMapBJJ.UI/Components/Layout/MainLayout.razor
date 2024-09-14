@@ -1,6 +1,8 @@
 ﻿@inherits LayoutComponentBase
+@inject ThemeService ThemeService
+@inject CookieThemeService CookieThemeService
 
-<RadzenComponents @rendermode="InteractiveServer" />
+<RadzenComponents @rendermode="InteractiveServer"/>
 <div class="page">
     <div class="sidebar">
         <NavMenu/>
@@ -8,7 +10,16 @@
 
     <main>
         <div class="top-row px-4">
-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
+            <RadzenStack Orientation="Orientation.Horizontal" JustifyContent="JustifyContent.Center" Gap="0.5rem" class="rz-p-sm-2">
+                <RadzenLabel><strong>Theme:</strong></RadzenLabel>
+                @foreach (var theme in Themes.All.Where(x => new[] { "material", "standard", "standard-dark", "dark", "humanistic" }.Contains(x.Value)))
+                {
+                    string icon = ThemeService.Theme == theme.Value ? "check_circle" : "add_circle";
+
+                    var style = $"background-color: {theme.Base}; color: {theme.Primary}";
+                    <RadzenButton Icon=@icon Style="@style" Click="@(() => ChangeTheme(theme.Value))" ButtonStyle="ButtonStyle.Primary" Size="ButtonSize.Small" class="rz-border-radius-10 rz-shadow-6"/>
+                }
+            </RadzenStack>
         </div>
 
         <article class="content px-4">
@@ -22,3 +33,13 @@
     <a href="" class="reload">Reload</a>
     <a class="dismiss">🗙</a>
 </div>
+
+@code{
+
+    void ChangeTheme(string value)
+    {
+        ThemeService.SetTheme(value);
+        StateHasChanged();
+    }
+
+}
