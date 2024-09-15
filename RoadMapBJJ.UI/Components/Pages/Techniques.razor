@@ -1,6 +1,22 @@
+@using RoadMapBJJ.UI.DTOs
+@using RoadMapBJJ.UI.Components.Shared
 @attribute [Route($"/{AppRoutes.Techniques}")]
-<h3>Techniques</h3>
+
+
+<RadzenDataList WrapItems="true" AllowPaging="false" Data="@techniques" TItem="TechniqueCardModel">
+    <Template Context="technique">
+        <TechniqueCard TechniqueCardModel="technique" />
+
+    </Template>
+</RadzenDataList>
 
 @code {
-    
+
+    IEnumerable<TechniqueCardModel> techniques;
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        techniques = [new TechniqueCardModel("ds","adsdasd", "dfdfdfsdsfsf", 2,2)];
+    }
+
 }

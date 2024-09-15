@@ -10,4 +10,8 @@
       <PackageReference Include="Radzen.Blazor" Version="5.1.11" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\RoadMapBJJ\RoadMapBJJ.Contracts\RoadMapBJJ.Contracts.csproj" />
+    </ItemGroup>
+
 </Project>

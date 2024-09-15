@@ -9,16 +9,34 @@
 <RadzenLayout>
     <RadzenHeader>
         <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" Gap="0">
-            <RadzenSidebarToggle Click="@(() => _sidebarExpanded = !_sidebarExpanded)" />
+            <RadzenSidebarToggle Click="@(() => _sidebarExpanded = !_sidebarExpanded)"/>
             <RadzenStack Orientation="Orientation.Horizontal" JustifyContent="JustifyContent.Center" Gap="0.5rem" class="rz-p-sm-2">
-                <RadzenLabel><strong>Theme:</strong></RadzenLabel>
+                <RadzenLabel>
+                    <strong>Theme:</strong>
+                </RadzenLabel>
                 @foreach (var theme in Themes.All.Where(x => new[] { "material", "standard", "standard-dark", "dark", "humanistic" }.Contains(x.Value)))
                 {
-                string icon = ThemeService.Theme == theme.Value ? "check_circle" : "add_circle";
+                    var isChosen = ThemeService.Theme == theme.Value;
+                    var icon = isChosen ? "check_circle" : "add_circle";
+                    var border = isChosen ? "border: 5px solid green;" : "";
 
-                var style = $"background-color: {theme.Base}; color: {theme.Primary}";
-                <RadzenButton Icon=@icon Style="@style" Click="@(() => ChangeTheme(theme.Value))" ButtonStyle="ButtonStyle.Primary" Size="ButtonSize.Small" class="rz-border-radius-10 rz-shadow-6"/>
+                    var style = $"background-color: {theme.Base}; color: {theme.Primary}; {border}";
+                    Console.WriteLine(style);
+                    <RadzenButton Icon=@icon Style="@style" Click="@(() => ChangeTheme(theme.Value))" ButtonStyle="ButtonStyle.Primary" Size="ButtonSize.Small" class="rz-border-radius-10 rz-shadow-6"/>
                 }
+                <RadzenProfileMenu>
+                    <Template>
+                        <RadzenGravatar Email="user@example.com"/>
+
+                    </Template>
+                    <ChildContent>
+                        <RadzenProfileMenuItem Text="Buttons" Path="buttons" Icon="account_circle"></RadzenProfileMenuItem>
+                        <RadzenProfileMenuItem Text="Menu" Path="menu" Icon="line_weight"></RadzenProfileMenuItem>
+                        <RadzenProfileMenuItem Text="FileInput" Path="fileinput" Icon="attach_file"></RadzenProfileMenuItem>
+                        <RadzenProfileMenuItem Text="Dialog" Path="dialog" Icon="perm_media"></RadzenProfileMenuItem>
+                        <RadzenProfileMenuItem Text="Notification" Path="notification" Icon="announcement"></RadzenProfileMenuItem>
+                    </ChildContent>
+                </RadzenProfileMenu>
             </RadzenStack>
         </RadzenStack>
     </RadzenHeader>
@@ -27,11 +45,11 @@
             <RadzenPanelMenuItem Text="Home" Icon="home" Path=""/>
             <RadzenPanelMenuItem Text="Trainers" Icon="dashboard" Path=@AppRoutes.Trainers/>
             <RadzenPanelMenuItem Text="Techniques" Icon="auto_awesome" Path="@AppRoutes.Techniques">
-                <RadzenPanelMenuItem Text="Actions" Icon="color_lens" />
-                <RadzenPanelMenuItem Text="Trasitions" Icon="color_lens" />
-                <RadzenPanelMenuItem Text="Positions" Icon="color_lens" />
+                <RadzenPanelMenuItem Text="Actions" Icon="color_lens"/>
+                <RadzenPanelMenuItem Text="Trasitions" Icon="color_lens"/>
+                <RadzenPanelMenuItem Text="Positions" Icon="color_lens"/>
             </RadzenPanelMenuItem>
-            <RadzenPanelMenuItem Text="Settings" Icon="dashboard" />
+            <RadzenPanelMenuItem Text="Settings" Icon="dashboard"/>
         </RadzenPanelMenu>
     </RadzenSidebar>
     <RadzenBody>

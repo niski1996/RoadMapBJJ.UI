@@ -1,0 +1,42 @@
+@using RoadMapBJJ.UI.DTOs
+
+<RadzenCard class="rz-my-12 rz-mx-auto" Style="max-width: 420px">
+    <RadzenStack Orientation="Orientation.Horizontal" JustifyContent="JustifyContent.Start" Gap="1rem" class="rz-p-4">
+        <ThumbnailsCarousel ResourcesId="@(Guid.Parse("89fdb3cc-d5e0-4a75-9d32-d1d645a393fe"))" ThumbnailCount="3"/>
+        <RadzenStack Gap="0">
+            <RadzenText TextStyle="TextStyle.Overline" class="rz-display-flex rz-mt-2 rz-my-0">Name</RadzenText>
+            <RadzenText TextStyle="TextStyle.Body1">
+                <b>@(TechniqueCardModel.Name)</b>
+            </RadzenText>
+            <RadzenText TextStyle="TextStyle.Overline" class="rz-display-flex rz-mt-4 rz-mb-0">Associated Techniques</RadzenText>
+            <RadzenText TextStyle="TextStyle.Body1">
+                <b>@TechniqueCardModel.AssociatedTechniques</b>
+            </RadzenText>
+            <RadzenText TextStyle="TextStyle.Overline" class="rz-display-flex rz-mt-4 rz-mb-0">Available Videos</RadzenText>
+            <RadzenText TextStyle="TextStyle.Body1">
+                <b>@TechniqueCardModel.AvailableVideos</b>
+            </RadzenText>
+        </RadzenStack>
+    </RadzenStack>
+    <RadzenCard class="rz-background-color-primary-light rz-shadow-0 rz-border-radius-0 rz-p-8" style="margin: 1rem calc(-1 * var(--rz-card-padding));">
+        <RadzenText TextStyle="TextStyle.H6" class="rz-color-on-primary-light">
+            <strong>Club Information</strong>
+        </RadzenText>
+        <RadzenRow RowGap="0">
+            <RadzenColumn SizeSM="6">
+                <RadzenText TextStyle="TextStyle.Overline" class="rz-color-on-primary-light rz-display-flex rz-mt-4 rz-mb-0">Club</RadzenText>
+                <RadzenText TextStyle="TextStyle.Body1" class="rz-color-on-primary-light">
+                    <b>@TechniqueCardModel.Description</b>
+                </RadzenText>
+            </RadzenColumn>
+        </RadzenRow>
+    </RadzenCard>
+    <RadzenStack Orientation="Orientation.Horizontal" JustifyContent="JustifyContent.End" Gap="0">
+        <RadzenButton Variant="Variant.Text" class="rz-text-secondary-color" Text="Cancel"/>
+        <RadzenButton Variant="Variant.Text" Text="Send"/>
+    </RadzenStack>
+</RadzenCard>
+
+@code {
+    [Parameter, EditorRequired] public required TechniqueCardModel TechniqueCardModel { get; set; }
+}
