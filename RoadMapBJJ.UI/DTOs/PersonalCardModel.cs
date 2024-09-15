@@ -1,7 +1,3 @@
 namespace RoadMapBJJ.UI.DTOs;
 
-internal class PersonalCardModel
-{
-    string Name { get; set; }
-    
-}
+public record PersonalCardModel(string Name, string LastName, string City, string Club, int Techniques);
