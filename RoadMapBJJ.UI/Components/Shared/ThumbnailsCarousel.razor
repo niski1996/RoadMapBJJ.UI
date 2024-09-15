@@ -1,0 +1,51 @@
+@inherits ComponentBase
+
+<RadzenImage Path="@patch" class="rz-mx-auto rz-my-12"/>
+
+@code {
+    private string patch; 
+    private int actualCount = 0;
+
+    [Parameter] public int ThumbnailCount { get; set; }
+    [Parameter] public Guid ResourcesId { get; set; }
+
+    private bool isComponentActive = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        patch = $"media/avatars/{ResourcesId.ToString()}/{ResourcesId.ToString()}_{actualCount}.jpg";
+        await base.OnInitializedAsync();
+        _ = ChangePictureAsync(); // Uruchamiamy asynchroniczną pętlę bez czekania
+    }
+
+    private async Task ChangePictureAsync()
+    {
+        while (isComponentActive)
+        {
+            await Task.Delay(3000); // Zamiast Thread.Sleep używamy Task.Delay, aby nie blokować wątku UI
+            
+            // Aktualizujemy obrazek
+            patch = $"media/videos/{ResourcesId.ToString()}/thumbnails/{ResourcesId.ToString()}_{actualCount}.jpg";
+            
+            actualCount++;
+            if (actualCount >= ThumbnailCount)
+            {
+                actualCount = 0;
+            }
+
+            InvokeAsync(StateHasChanged); // Odśwież interfejs użytkownika
+        }
+    }
+
+    public override Task SetParametersAsync(ParameterView parameters)
+    {
+        base.SetParametersAsync(parameters);
+        isComponentActive = true; // Upewnij się, że komponent działa przy zmianie parametrów
+        return Task.CompletedTask;
+    }
+
+    public void Dispose()
+    {
+        isComponentActive = false; // Zatrzymujemy pętlę, gdy komponent zostanie usunięty
+    }
+}
