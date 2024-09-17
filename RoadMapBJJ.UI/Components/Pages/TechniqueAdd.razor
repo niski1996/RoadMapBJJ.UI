@@ -1,0 +1,22 @@
+@attribute [Route($"/{AppRoutes.TechniquesAdd}")]
+<h3>TechniqueAdd</h3>
+<InputFile OnChange="@LoadFiles" multiple/>
+@if (errors.Count > 0)
+{
+    <h2>masz bleda</h2>
+}
+
+@code {
+    private long maxFileSize = 1024*1024*3;//3MB
+    private int maxAlloweFiles = 3;
+    private List<string> errors = new();
+
+    private async Task LoadFiles(InputFileChangeEventArgs e)
+    {
+        errors.Clear();
+        foreach (var file in e.GetMultipleFiles(maxAlloweFiles))
+        {
+            string newFileName = new Guid().ToString() + Path.GetExtension(file.Name);
+        }
+    }
+}

@@ -1,8 +1,10 @@
+@attribute [Route($"/{AppRoutes.Techniques}")]
 @using RoadMapBJJ.UI.DTOs
 @using RoadMapBJJ.UI.Components.Shared
-@attribute [Route($"/{AppRoutes.Techniques}")]
 
 
+
+<RadzenLink Path="@AppRoutes.TechniquesAdd">ddddddddddddddddddddddddddddddddd</RadzenLink>
 <RadzenDataList WrapItems="true" AllowPaging="false" Data="@techniques" TItem="TechniqueCardModel">
     <Template Context="technique">
         <TechniqueCard TechniqueCardModel="technique" />
