@@ -1,71 +1,94 @@
-@using RoadMapBJJ.Contracts.Entities.Persons
 @using RoadMapBJJ.UI.Common
+@using RoadMapBJJ.UI.DTOs
 
-<RadzenRow AlignItems="AlignItems.Center" RowGap="0.25rem">
-    <RadzenColumn Size="12" SizeMD="4" class="rz-text-align-start rz-text-align-md-end">
-        <RadzenLabel Text="Name" />
-    </RadzenColumn>
-    <RadzenColumn Size="12" SizeMD="8">
-        <RadzenTextBox Name="Name" @bind-Value=@User.Name Style="display: block; width: 100%" />
-        <RadzenRequiredValidator Component="Name" Text="Enter name"/>
-        <RadzenRegexValidator Component="Password"Text=@AppRegex.BaseInfo Pattern="@AppRegex.BaseRegex" />
-    </RadzenColumn>
-</RadzenRow>
-<RadzenRow AlignItems="AlignItems.Center" RowGap="0.25rem">
-    <RadzenColumn Size="12" SizeMD="4" class="rz-text-align-start rz-text-align-md-end">
-        <RadzenLabel Text="Last Name" />
-    </RadzenColumn>
-    <RadzenColumn Size="12" SizeMD="8">
-        <RadzenTextBox Name="LastName" @bind-Value=@User.LastName Style="display: block; width: 100%" />
-        <RadzenRequiredValidator Component="Name" Text="Enter last name"/>
-        <RadzenRegexValidator Component="Password"Text=@AppRegex.LastNameInfo Pattern="@AppRegex.LastNameRegex" />
-    </RadzenColumn>
-</RadzenRow>
-<RadzenRow AlignItems="AlignItems.Center" RowGap="0.25rem">
-    <RadzenColumn Size="12" SizeMD="4" class="rz-text-align-start rz-text-align-md-end">
-        <RadzenLabel Text="Password" Component="Password" />
-    </RadzenColumn>
-    <RadzenColumn Size="12" SizeMD="8">
-        <RadzenPassword Name="Password" @bind-Value=@User.Password Style="display: block; width: 100%" />
-        <RadzenRequiredValidator Component="Password" Text="Enter password"/>
-        <RadzenRegexValidator Component="Password"Text=@AppRegex.PasswordInfo Pattern="@AppRegex.PasswordRegex" />
-    </RadzenColumn>
-</RadzenRow>
-<RadzenRow AlignItems="AlignItems.Center" RowGap="0.25rem">
-    <RadzenColumn Size="12" SizeMD="4" class="rz-text-align-start rz-text-align-md-end">
-        <RadzenLabel Text="Repeat Password" Component="RepeatPassword" />
-    </RadzenColumn>
-    <RadzenColumn Size="12" SizeMD="8">
-        <RadzenPassword Name="RepeatPassword" @bind-Value="@repeatePassword" Style="display: block; width: 100%" />
-        <RadzenRequiredValidator Component="RepeatPassword" Text="Repeat your password" />
-        <RadzenCompareValidator Visible=@(!string.IsNullOrEmpty(repeatePassword)) Value=@User.Password Component="RepeatPassword" Text="Passwords should be the same" />
-    </RadzenColumn>
-</RadzenRow>
+<div class="form-container">
+    <RadzenRow AlignItems="AlignItems.Center" RowGap="1rem">
+        <RadzenColumn Size="12" SizeMD="4" class="label-column">
+            <RadzenLabel Text="User name" />
+        </RadzenColumn>
+        <RadzenColumn Size="12" SizeMD="8">
+            <RadzenTextBox Name="UserName" @bind-Value=@User.UserName Style="width: 100%" />
+            <RadzenRequiredValidator Component="UserName" Text="Enter user name" />
+            <RadzenRegexValidator Component="UserName" Text=@AppRegex.BaseInfo Pattern="@AppRegex.BaseRegex" />
+        </RadzenColumn>
+    </RadzenRow>
 
-<RadzenStack Orientation="Orientation.Horizontal">
-    <RadzenStack Style="width: 50%; padding-right: 10px;">
-        <RadzenTextBox @bind-Value="User.Name" Placeholder="First Name"Name="name"/>
-        <RadzenRequiredValidator Component="name" Text="First Name is required"/>
+    <RadzenRow AlignItems="AlignItems.Center" RowGap="1rem">
+        <RadzenColumn Size="12" SizeMD="4" class="label-column">
+            <RadzenLabel Text="Name" />
+        </RadzenColumn>
+        <RadzenColumn Size="12" SizeMD="8">
+            <RadzenTextBox Name="Name" @bind-Value=@User.Name Style="width: 100%" />
+            <RadzenRequiredValidator Component="Name" Text="Enter name" />
+            <RadzenRegexValidator Component="Name" Text=@AppRegex.BaseInfo Pattern="@AppRegex.BaseRegex" />
+        </RadzenColumn>
+    </RadzenRow>
 
-        <RadzenTextBox @bind-Value="User.LastName"Placeholder="Last Name"Name="lastName"/>
-        <RadzenRequiredValidator Component="lastName" Text="Last Name is required"/>
-    </RadzenStack>
+    <RadzenRow AlignItems="AlignItems.Center" RowGap="1rem">
+        <RadzenColumn Size="12" SizeMD="4" class="label-column">
+            <RadzenLabel Text="Last Name" />
+        </RadzenColumn>
+        <RadzenColumn Size="12" SizeMD="8">
+            <RadzenTextBox Name="LastName" @bind-Value=@User.LastName Style="width: 100%" />
+            <RadzenRequiredValidator Component="LastName" Text="Enter last name" />
+            <RadzenRegexValidator Component="LastName" Text=@AppRegex.LastNameInfo Pattern="@AppRegex.LastNameRegex" />
+        </RadzenColumn>
+    </RadzenRow>
 
-    <RadzenStack Style="width: 50%; padding-left: 10px;">
-        <RadzenTextBox @bind-Value="User.Email"Placeholder="Email"Name="email"/>
-        <RadzenRequiredValidator Component="email" Text="Email is required"/>
-        <RadzenEmailValidator Component="email" Text="Provide a valid email address"/>
+    <RadzenRow AlignItems="AlignItems.Center" RowGap="1rem">
+        <RadzenColumn Size="12" SizeMD="4" class="label-column">
+            <RadzenLabel Text="Password" Component="Password" />
+        </RadzenColumn>
+        <RadzenColumn Size="12" SizeMD="8">
+            <RadzenPassword Name="Password" @bind-Value=@User.Password Style="width: 100%" />
+            <RadzenRequiredValidator Component="Password" Text="Enter password" />
+            <RadzenRegexValidator Component="Password" Text=@AppRegex.PasswordInfo Pattern="@AppRegex.PasswordRegex" />
+        </RadzenColumn>
+    </RadzenRow>
 
-        <RadzenTextBox @bind-Value="User.PasswordHash" Placeholder="Password" Name="password"Type="password"/>
-        <RadzenRequiredValidator Component="password" Text="Password is required"/>
-        <RadzenRegexValidator Component="password" Pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" Text="Password must be at least 8 characters long and contain letters and numbers."/>
-    </RadzenStack>
-</RadzenStack>
+    <RadzenRow AlignItems="AlignItems.Center" RowGap="1rem">
+        <RadzenColumn Size="12" SizeMD="4" class="label-column">
+            <RadzenLabel Text="Repeat Password" Component="RepeatPassword" />
+        </RadzenColumn>
+        <RadzenColumn Size="12" SizeMD="8">
+            <RadzenPassword Name="RepeatPassword" @bind-Value="@repeatPassword" Style="width: 100%" />
+            <RadzenRequiredValidator Component="RepeatPassword" Text="Repeat your password" />
+            <RadzenCompareValidator Visible=@(!string.IsNullOrEmpty(repeatPassword)) Value=@User.Password Component="RepeatPassword" Text="Passwords should be the same" />
+        </RadzenColumn>
+    </RadzenRow>
 
-<RadzenButton Text="Register" ButtonType="ButtonType.Submit"/>
+    <RadzenRow AlignItems="AlignItems.Center" RowGap="1rem">
+        <RadzenColumn Size="12" SizeMD="4" class="label-column">
+            <RadzenLabel Text="Email" Component="email" />
+        </RadzenColumn>
+        <RadzenColumn Size="12" SizeMD="8">
+            <RadzenTextBox @bind-Value="User.Email" Placeholder="Email" Name="email" Style="width: 100%" />
+            <RadzenRequiredValidator Component="email" Text="Email is required" />
+            <RadzenEmailValidator Component="email" Text="Provide a valid email address" />
+        </RadzenColumn>
+    </RadzenRow>
+
+    <RadzenRow AlignItems="AlignItems.Center" RowGap="1rem">
+        <RadzenColumn Size="12" SizeMD="4" class="label-column">
+            <RadzenLabel Text="Phone number" Component="phone" />
+        </RadzenColumn>
+        <RadzenColumn Size="12" SizeMD="8">
+            <RadzenTextBox @bind-Value="User.PhoneNumber" Name="phone" Placeholder="Phone number" Style="width: 100%" />
+        </RadzenColumn>
+    </RadzenRow>
+
+    <RadzenRow AlignItems="AlignItems.Center" RowGap="1rem">
+        <RadzenColumn Size="12" SizeMD="4" class="label-column">
+            <RadzenLabel Text="Birth date" Component="birth" />
+        </RadzenColumn>
+        <RadzenColumn Size="12" SizeMD="8">
+            <RadzenDatePicker @bind-Value="@User.BirthDate" DateFormat="dd/MM/yyyy" Name="DatePickerDateOnlyType" />
+        </RadzenColumn>
+    </RadzenRow>
+</div>
 
 @code {
-    string repeatePassword;
+string? repeatPassword;
 
-    [Parameter, EditorRequired] public required User User { get; set; }
+[Parameter, EditorRequired] public required UserModel User { get; set; }
 }
