@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoadMapBJJ.UI", "RoadMapBJJ
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoadMapBJJ.Contracts", "..\RoadMapBJJ\RoadMapBJJ.Contracts\RoadMapBJJ.Contracts.csproj", "{2DC8EF95-0445-4D41-8239-5863644DC579}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoadMapBJJ.UI.Test", "RoadMapBJJ.UI.Test\RoadMapBJJ.UI.Test.csproj", "{F977060A-3D5C-4A1D-A60C-4BCA19BE2DBC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{2DC8EF95-0445-4D41-8239-5863644DC579}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2DC8EF95-0445-4D41-8239-5863644DC579}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2DC8EF95-0445-4D41-8239-5863644DC579}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F977060A-3D5C-4A1D-A60C-4BCA19BE2DBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F977060A-3D5C-4A1D-A60C-4BCA19BE2DBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F977060A-3D5C-4A1D-A60C-4BCA19BE2DBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F977060A-3D5C-4A1D-A60C-4BCA19BE2DBC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

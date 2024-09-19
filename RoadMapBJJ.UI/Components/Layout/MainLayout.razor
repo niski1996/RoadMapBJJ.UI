@@ -21,7 +21,6 @@
                     var border = isChosen ? "border: 5px solid green;" : "";
 
                     var style = $"background-color: {theme.Base}; color: {theme.Primary}; {border}";
-                    Console.WriteLine(style);
                     <RadzenButton Icon=@icon Style="@style" Click="@(() => ChangeTheme(theme.Value))" ButtonStyle="ButtonStyle.Primary" Size="ButtonSize.Small" class="rz-border-radius-10 rz-shadow-6"/>
                 }
                 <RadzenProfileMenu>
