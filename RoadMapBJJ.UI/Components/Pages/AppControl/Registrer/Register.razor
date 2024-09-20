@@ -7,55 +7,11 @@
         <Steps>
             <RadzenStepsItem Text="Personal Information">
                 <PersonalInfoStep User="@userRegistrationModel.User"></PersonalInfoStep>
-
             </RadzenStepsItem>
-            @* <RadzenStepsItem Text="Orders" Disabled="@(selectedCustomers == null || selectedCustomers != null && !selectedCustomers.Any())"> *@
-            @*     <RadzenText TextStyle="TextStyle.H5" TagName="TagName.H3" class="rz-my-6">2. Select an Order to continue</RadzenText> *@
-            @*     <RadzenDataGrid ColumnWidth="150px" PageSize="5" AllowFiltering="true" AllowPaging="true" AllowSorting="true" *@
-            @*                     Data="@ordersByCustomers" @bind-Value="@selectedOrders"> *@
-            @*         <Columns> *@
-            @*             <RadzenDataGridColumn Width="120px" Property="OrderID" Title="Order ID" /> *@
-            @*             <RadzenDataGridColumn Width="200px" Property="Customer.CompanyName" Title="Customer" /> *@
-            @*             <RadzenDataGridColumn Property="Employee.LastName" Title="Employee"> *@
-            @*                 <Template Context="order"> *@
-            @*                     <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" Gap="0.5rem"> *@
-            @*                         <RadzenImage Path="@order.Employee?.Photo" style="width: 40px; height: 40px; border-radius: 8px;" AlternateText="@(order.Employee?.FirstName + " " + order.Employee?.LastName)" /> *@
-            @*                         <span>@order.Employee?.LastName</span> *@
-            @*                     </RadzenStack> *@
-            @*                 </Template> *@
-            @*             </RadzenDataGridColumn> *@
-            @*             <RadzenDataGridColumn Property="@nameof(Order.OrderDate)" Title="Order Date"> *@
-            @*                 <Template Context="order"> *@
-            @*                     @String.Format("{0:d}", order.OrderDate) *@
-            @*                 </Template> *@
-            @*             </RadzenDataGridColumn> *@
-            @*             <RadzenDataGridColumn Property="@nameof(Order.RequiredDate)" Title="Required Date"> *@
-            @*                 <Template Context="order"> *@
-            @*                     @String.Format("{0:d}", order.RequiredDate) *@
-            @*                 </Template> *@
-            @*             </RadzenDataGridColumn> *@
-            @*             <RadzenDataGridColumn Property="@nameof(Order.ShippedDate)" Title="Shipped Date"> *@
-            @*                 <Template Context="order"> *@
-            @*                     @String.Format("{0:d}", order.ShippedDate) *@
-            @*                 </Template> *@
-            @*             </RadzenDataGridColumn> *@
-            @*             <RadzenDataGridColumn Property="@nameof(Order.Freight)" Title="Freight"> *@
-            @*                 <Template Context="order"> *@
-            @*                     @String.Format(new System.Globalization.CultureInfo("en-US"), "{0:C}", order.Freight) *@
-            @*                 </Template> *@
-            @*             </RadzenDataGridColumn> *@
-            @*             <RadzenDataGridColumn Property="@nameof(Order.ShipName)" Title="Ship Name" /> *@
-            @*             <RadzenDataGridColumn Property="ShipAddress" Title="Address" /> *@
-            @*             <RadzenDataGridColumn Property="@nameof(Order.ShipCity)" Title="City" /> *@
-            @*             <RadzenDataGridColumn Property="ShipRegion" Title="Region" /> *@
-            @*             <RadzenDataGridColumn Property="ShipPostalCode" Title="Postal Code" /> *@
-            @*             <RadzenDataGridColumn Property="@nameof(Order.ShipCountry)" Title="Country" /> *@
-            @*         </Columns> *@
-            @*     </RadzenDataGrid> *@
-            @* </RadzenStepsItem> *@
-            @* <RadzenStepsItem Text="Order Details" Disabled="@(selectedOrders == null || selectedOrders != null && !selectedOrders.Any())"> *@
-            @* *@
-            @* </RadzenStepsItem> *@
+            <RadzenStepsItem Text="Contact">
+                <ContactStep Contact="@userRegistrationModel.Contact"></ContactStep>
+            </RadzenStepsItem>
+
         </Steps>
     </RadzenSteps>
 </RadzenTemplateForm>

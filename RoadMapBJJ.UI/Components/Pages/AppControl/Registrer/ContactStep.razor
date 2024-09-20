@@ -1,46 +1,54 @@
+@using RESTCountries.NET.Services
 @using RoadMapBJJ.UI.Common
 @using RoadMapBJJ.UI.DTOs
 
 <RadzenRow>
     <RadzenColumn Size="12" SizeMD="6" class="label-column">
         <RadzenStack Gap="2rem">
-            <RadzenFormField Text="User name" Variant="Variant.Filled" Style="width: 100%;">
-                <RadzenTextBox Name="UserName" @bind-Value="@User.UserName" Style="width: 100%"/>
-                <RadzenRequiredValidator Component="UserName" Text="Enter user name"/>
-                <RadzenRegexValidator Component="UserName" Text="@AppRegex.BaseInfo" Pattern="@AppRegex.BaseRegex"/>
+            <RadzenFormField Text="Email" Variant="Variant.Filled" Style="width: 100%;">
+                <RadzenTextBox @bind-Value="@Contact.Email" Placeholder="Email" Name="email" Style="width: 100%" />
+                <RadzenRequiredValidator Component="email" Text="Email is required" />
+                <RadzenEmailValidator Component="email" Text="Provide a valid email address" />
             </RadzenFormField>
-            <RadzenFormField Text="Password" Variant="Variant.Filled" Style="width: 100%;">
-                <RadzenPassword Name="Password" @bind-Value="@User.Password" Style="width: 100%"/>
-                <RadzenRequiredValidator Component="Password" Text="Enter password"/>
-                <RadzenRegexValidator Component="Password" Text="@AppRegex.PasswordInfo" Pattern="@AppRegex.PasswordRegex"/>
+            <RadzenFormField Text="Nationality" Variant="Variant.Filled" Style="width: 100%;">
+                <RadzenDropDown @bind-Value=@Contact.Country Data=@_countries Style="width: 100%;" Name="DropDownBindValue" />
             </RadzenFormField>
-            <RadzenFormField Text="Repeat Password" Variant="Variant.Filled" Style="width: 100%;">
-                <RadzenPassword Name="RepeatPassword" @bind-Value="@_repeatPassword" Style="width: 100%"/>
-                <RadzenRequiredValidator Component="RepeatPassword" Text="Repeat your password"/>
-                <RadzenCompareValidator Visible="@(!string.IsNullOrEmpty(_repeatPassword))" Value="@User.Password" Component="RepeatPassword" Text="Passwords should be the same"/>
+            <RadzenFormField Text="Street" Variant="Variant.Filled" Style="width: 100%;">
+                <RadzenTextBox Name="Street" @bind-Value="@Contact.Street" Style="width: 100%" />
+                <RadzenRequiredValidator Component="Street" Text="Enter street" />
+            </RadzenFormField>
+            <RadzenFormField Text="Building" Variant="Variant.Filled" Style="width: 100%;">
+                <RadzenTextBox Name="Building" @bind-Value="@Contact.Building" Style="width: 100%" />
+                <RadzenRequiredValidator Component="Building" Text="Enter building number" />
             </RadzenFormField>
         </RadzenStack>
     </RadzenColumn>
     <RadzenColumn Size="12" SizeMD="6" class="label-column">
         <RadzenStack Gap="2rem;">
-            <RadzenFormField Text="Name" Variant="Variant.Filled" Style="width: 100%;">
-                <RadzenTextBox Name="Name" @bind-Value="@User.Name" Style="width: 100%"/>
+            <RadzenFormField Text="Phone number" Variant="Variant.Filled" Style="width: 100%;">
+                <RadzenTextBox Name="Phone" @bind-Value="@Contact.Phone" Style="width: 100%"/>
                 <RadzenRequiredValidator Component="Name" Text="Enter name"/>
                 <RadzenRegexValidator Component="Name" Text="@AppRegex.BaseInfo" Pattern="@AppRegex.BaseRegex"/>
             </RadzenFormField>
-            <RadzenFormField Text="Last name" Variant="Variant.Filled" Style="width: 100%;">
-                <RadzenTextBox Name="LastName" @bind-Value="@User.LastName" Style="width: 100%"/>
-                <RadzenRequiredValidator Component="LastName" Text="Enter last name"/>
-                <RadzenRegexValidator Component="LastName" Text="@AppRegex.LastNameInfo" Pattern="@AppRegex.LastNameRegex"/>
+            <RadzenFormField Text="City" Variant="Variant.Filled" Style="width: 100%;">
+                <RadzenTextBox Name="City" @bind-Value="@Contact.City" Style="width: 100%"/>
+                <RadzenRequiredValidator Component="City" Text="Enter city"/>
+                <RadzenRegexValidator Component="City" Text="@AppRegex.BaseInfo" Pattern="@AppRegex.BaseRegex"/>
             </RadzenFormField>
-            <RadzenFormField Text="Nationality" Variant="Variant.Filled" Style="width: 100%;">
-                <RadzenDropDown @bind-Value=@User.Nationality Data=@_countries Style="width: 100%;" Name="DropDownBindValue" />
+            <RadzenFormField Text="ZipCode" Variant="Variant.Filled" Style="width: 100%;">
+                <RadzenTextBox Name="ZipCode" @bind-Value="@Contact.ZipCode" Style="width: 100%" />
+                <RadzenRequiredValidator Component="ZipCode" Text="Enter ZIP code" />
+                <RadzenRegexValidator Component="ZipCode" Text="@AppRegex.PostalCodeInfo" Pattern="@AppRegex.PostalCodeRegex" />
             </RadzenFormField>
+            <RadzenFormField Text="Local" Variant="Variant.Filled" Style="width: 100%;">
+                <RadzenTextBox Name="Local" @bind-Value="@Contact.Local" Style="width: 100%" />
+            </RadzenFormField>
+
         </RadzenStack>
     </RadzenColumn>
 </RadzenRow>
 @code {
-string? repeatPassword;
 
-[Parameter, EditorRequired] public required UserModel User { get; set; }
+[Parameter, EditorRequired] public required ContactModel Contact { get; set; }
+private readonly List<string> _countries = RestCountriesService.GetAllCountries().Select(x => x.Name.Official).ToList();
 }
