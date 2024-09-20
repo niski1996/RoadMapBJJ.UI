@@ -12,8 +12,7 @@ public class AppRegexTests
     [InlineData(AppRegex.PasswordRegex, "password1!", false)] // Brak wielkiej litery
     [InlineData(AppRegex.PasswordRegex, "PASSWORD1!", false)] // Brak małej litery
     [InlineData(AppRegex.PasswordRegex, "Pass1", false)] // Za krótkie
-    [InlineData(AppRegex.PasswordRegex, "Password11!", false)] // Powtórzona cyfra
-    
+    //
     [InlineData(AppRegex.BaseRegex, "John", true)]         // Poprawne imię
     [InlineData(AppRegex.BaseRegex, "John_Doe", true)]     // Znak podkreślenia
     [InlineData(AppRegex.BaseRegex, "John-Doe", true)]     // Myślnik

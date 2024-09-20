@@ -2,8 +2,8 @@ namespace RoadMapBJJ.UI.Common
 {
     public static class AppRegex
     {
-        public const string PasswordRegex = "^(?!.([A-Za-z0-9])\\1{1})(?=.?[A-Z])(?=.?[a-z])(?=.?[0-9])(?=.?[#?!@$%^&-]).{8,}$";
-        public const string PasswordInfo = "Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, one number, and one special character.";
+        public const string PasswordRegex = @"^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,50}$";
+        public const string PasswordInfo = "Password must contain one digit from 1 to 9, one lowercase letter, one uppercase letter, one special character, no space, and it must be 8-50 characters long..";
         
         public const string BaseRegex = "^[A-Za-z_\\.-]+$";
         public const string BaseInfo = "Must contain only letters, underscores, dots, or hyphens, and be at least 2 characters long.";

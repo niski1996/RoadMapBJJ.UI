@@ -7,9 +7,9 @@
             <RadzenLabel Text="User name" />
         </RadzenColumn>
         <RadzenColumn Size="12" SizeMD="8">
-            <RadzenTextBox Name="UserName" @bind-Value=@User.UserName Style="width: 100%" />
+            <RadzenTextBox Name="UserName" @bind-Value="@User.UserName" Style="width: 100%" />
             <RadzenRequiredValidator Component="UserName" Text="Enter user name" />
-            <RadzenRegexValidator Component="UserName" Text=@AppRegex.BaseInfo Pattern="@AppRegex.BaseRegex" />
+            <RadzenRegexValidator Component="UserName" Text="@AppRegex.BaseInfo" Pattern="@AppRegex.BaseRegex" />
         </RadzenColumn>
     </RadzenRow>
 
@@ -18,9 +18,9 @@
             <RadzenLabel Text="Name" />
         </RadzenColumn>
         <RadzenColumn Size="12" SizeMD="8">
-            <RadzenTextBox Name="Name" @bind-Value=@User.Name Style="width: 100%" />
+            <RadzenTextBox Name="Name" @bind-Value="@User.Name" Style="width: 100%" />
             <RadzenRequiredValidator Component="Name" Text="Enter name" />
-            <RadzenRegexValidator Component="Name" Text=@AppRegex.BaseInfo Pattern="@AppRegex.BaseRegex" />
+            <RadzenRegexValidator Component="Name" Text="@AppRegex.BaseInfo" Pattern="@AppRegex.BaseRegex" />
         </RadzenColumn>
     </RadzenRow>
 
@@ -29,9 +29,9 @@
             <RadzenLabel Text="Last Name" />
         </RadzenColumn>
         <RadzenColumn Size="12" SizeMD="8">
-            <RadzenTextBox Name="LastName" @bind-Value=@User.LastName Style="width: 100%" />
+            <RadzenTextBox Name="LastName" @bind-Value="@User.LastName" Style="width: 100%" />
             <RadzenRequiredValidator Component="LastName" Text="Enter last name" />
-            <RadzenRegexValidator Component="LastName" Text=@AppRegex.LastNameInfo Pattern="@AppRegex.LastNameRegex" />
+            <RadzenRegexValidator Component="LastName" Text="@AppRegex.LastNameInfo" Pattern="@AppRegex.LastNameRegex" />
         </RadzenColumn>
     </RadzenRow>
 
@@ -40,9 +40,9 @@
             <RadzenLabel Text="Password" Component="Password" />
         </RadzenColumn>
         <RadzenColumn Size="12" SizeMD="8">
-            <RadzenPassword Name="Password" @bind-Value=@User.Password Style="width: 100%" />
+            <RadzenPassword Name="Password" @bind-Value="@User.Password" Style="width: 100%" />
             <RadzenRequiredValidator Component="Password" Text="Enter password" />
-            <RadzenRegexValidator Component="Password" Text=@AppRegex.PasswordInfo Pattern="@AppRegex.PasswordRegex" />
+            <RadzenRegexValidator Component="Password" Text="@AppRegex.PasswordInfo" Pattern="@AppRegex.PasswordRegex" />
         </RadzenColumn>
     </RadzenRow>
 
@@ -53,7 +53,7 @@
         <RadzenColumn Size="12" SizeMD="8">
             <RadzenPassword Name="RepeatPassword" @bind-Value="@repeatPassword" Style="width: 100%" />
             <RadzenRequiredValidator Component="RepeatPassword" Text="Repeat your password" />
-            <RadzenCompareValidator Visible=@(!string.IsNullOrEmpty(repeatPassword)) Value=@User.Password Component="RepeatPassword" Text="Passwords should be the same" />
+            <RadzenCompareValidator Visible="@(!string.IsNullOrEmpty(repeatPassword))" Value="@User.Password" Component="RepeatPassword" Text="Passwords should be the same" />
         </RadzenColumn>
     </RadzenRow>
 

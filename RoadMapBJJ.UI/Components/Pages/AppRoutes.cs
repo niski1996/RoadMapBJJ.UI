@@ -10,4 +10,5 @@ public static class AppRoutes
     public const string Trainers = "Trainers";
     public const string TechniquesAdd = $"{Techniques}/Add";
     public const string Logout = "Logout";
+    public const string EditProfile = "EditProfile";
 }
