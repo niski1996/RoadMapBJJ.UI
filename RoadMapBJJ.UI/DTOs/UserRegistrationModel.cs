@@ -176,7 +176,6 @@ public class ContactModel :IEditTrackable
             {
                 _edited=true; 
                 _email=value;
-                
             }   
         }
     }
