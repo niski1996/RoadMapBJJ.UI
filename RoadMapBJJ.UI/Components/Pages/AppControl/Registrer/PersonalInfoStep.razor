@@ -22,6 +22,18 @@
         </RadzenStack>
     </RadzenColumn>
     <RadzenColumn Size="12" SizeMD="6" class="label-column">
+        <RadzenFormField Text="Name" Variant="Variant.Filled" Style="width: 100%;">
+            <RadzenTextBox Name="Name" @bind-Value=@User.Name Style="width: 100%"/>
+            <RadzenRequiredValidator Component="Name" Text="Enter name"/>
+            <RadzenRegexValidator Component="Name" Text=@AppRegex.BaseInfo Pattern="@AppRegex.BaseRegex"/>
+        </RadzenFormField>
+        <RadzenFormField Text="Last name Variant="Variant.Filled" Style="width: 100%;">
+        <RadzenTextBox Name="LastName" @bind-Value=@User.LastName Style="width: 100%"/>
+        <RadzenRequiredValidator Component="LastName" Text="Enter last name"/>
+        <RadzenRegexValidator Component="LastName" Text=@AppRegex.LastNameInfo Pattern="@AppRegex.LastNameRegex"/>
+        </RadzenFormField>
+        
+        
         <RadzenStack Gap="2rem">
             <RadzenRow AlignItems="AlignItems.Center" RowGap="1rem">
                 <RadzenColumn Size="12" SizeMD="4" class="label-column">
