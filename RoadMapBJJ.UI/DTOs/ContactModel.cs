@@ -1,5 +1,3 @@
-using RoadMapBJJ.Contracts.Enums;
-
 namespace RoadMapBJJ.UI.DTOs;
 
 public class ContactModel : IEditTrackable

@@ -1,0 +1,6 @@
+﻿services:
+  drillroad.ui:
+    image: drillroad.ui
+    build:
+      context: .
+      dockerfile: DrillRoad.UI/Dockerfile
