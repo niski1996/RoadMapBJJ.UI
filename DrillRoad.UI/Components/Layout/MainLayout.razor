@@ -1,9 +1,12 @@
 ﻿@using DrillRoad.UI.Common
+@using DrillRoad.UI.Data
+@using Microsoft.AspNetCore.Identity
 @inherits LayoutComponentBase
 @inject ThemeService ThemeService
 @inject NavigationManager Nav
 @* idk why, required by radzen *@
 @inject CookieThemeService CookieThemeService
+@inject SignInManager<ApplicationUser> SignInManager
 
 <RadzenLayout>
     <RadzenComponents @rendermode="InteractiveServer"/>
@@ -16,7 +19,6 @@
                     var isChosen = ThemeService.Theme == theme.Value;
                     var icon = isChosen ? "check_circle" : "add_circle";
                     var border = isChosen ? "border: 5px solid green;" : "";
-
                     var style = $"background-color: {theme.Base}; color: {theme.Primary}; {border}";
                     <RadzenButton Icon=@icon Style="@style" Click="@(() => ChangeTheme(theme.Value))" ButtonStyle="ButtonStyle.Primary" Size="ButtonSize.Small" class="rz-border-radius-10 rz-shadow-6"/>
                 }
@@ -27,10 +29,18 @@
                     <ChildContent>
                         <AuthorizeView>
                             <Authorized>
-                                <RadzenProfileMenuItem Text="Account" Path="@AppRoutes.Login" Icon="person"></RadzenProfileMenuItem>
-                                <RadzenProfileMenuItem Text="Notification" Path="@AppRoutes.Login" Icon="notifications"></RadzenProfileMenuItem>
-                                <RadzenProfileMenuItem Text="Settings" Path="@AppRoutes.Login" Icon="settings"></RadzenProfileMenuItem>
-                                <RadzenProfileMenuItem Text="Logout" Path="@AppRoutes.Login" Icon="logout"></RadzenProfileMenuItem>
+                                <RadzenProfileMenuItem Text=@(context.User.Identity?.Name != null ? context.User.Identity.Name[..context.User.Identity.Name.IndexOf('@')] : "account") 
+                                                       Path="@AppRoutes.Manage" Icon="person"></RadzenProfileMenuItem>
+                                <RadzenProfileMenuItem Text="Notification" Path="@AppRoutes.Notifications" Icon="notifications"></RadzenProfileMenuItem>
+                                <RadzenProfileMenuItem Text="Settings" Path="@AppRoutes.Settings" Icon="settings"></RadzenProfileMenuItem>
+                                <RadzenButton ButtonStyle="ButtonStyle.Warning" Click=Logout></RadzenButton>
+                                <div class="nav-item px-3">
+                                    <form action="Account/Logout" method="post">
+                                        <AntiforgeryToken/>
+                                        <input type="hidden" name="ReturnUrl" value="@currentUrl"/>
+                                        <RadzenButton ButtonType="ButtonType.Submit">Logout</RadzenButton>
+                                    </form>
+                                </div>
                             </Authorized>
                             <NotAuthorized>
                                 <RadzenProfileMenuItem Text="Login" Path="@AppRoutes.Login" Icon="login"></RadzenProfileMenuItem>
@@ -46,21 +56,11 @@
     <RadzenSidebar Responsive="false" Style="width: max-content">
         <RadzenPanelMenu DisplayStyle="@(_sidebarExpanded ? MenuItemDisplayStyle.IconAndText : MenuItemDisplayStyle.Icon)" ShowArrow="false">
             <RadzenPanelMenuItem Text="Home" Icon="home" Path=""/>
-            <RadzenPanelMenuItem Text="Trainers" Icon="dashboard" Path="@AppRoutes.Trainers"/>
-            <RadzenPanelMenuItem Text="Techniques" Icon="auto_awesome" Path="@AppRoutes.Techniques">
-                <RadzenPanelMenuItem Text="Actions" Icon="color_lens"/>
-                <RadzenPanelMenuItem Text="Trasitions" Icon="color_lens"/>
-                <RadzenPanelMenuItem Text="Positions" Icon="color_lens"/>
+            <RadzenPanelMenuItem Text="Trainers" Icon="self_improvement" Path="@AppRoutes.Trainers"/>
+            <RadzenPanelMenuItem Text="Techniques" Icon="sports_kabaddi" Path="@AppRoutes.Techniques">
             </RadzenPanelMenuItem>
             <RadzenPanelMenuItem Text="Settings" Icon="dashboard"/>
-            @* tmp *@
-            <RadzenCard>
-                <RadzenPanelMenuItem Text="Register" Icon="dashboard" Path="@AppRoutes.Register"/>
-                <RadzenPanelMenuItem Text="Login" Icon="dashboard" Path="@AppRoutes.Login"/>
-            </RadzenCard>
-            @* end tmp *@
         </RadzenPanelMenu>
-        <NavMenu/>
     </RadzenSidebar>
     <RadzenBody>
         <div class="rz-p-4">
@@ -74,11 +74,36 @@
 
 @code{
     private bool _sidebarExpanded = true;
+    private string? currentUrl;
+    
+    private void OnLocationChanged(object? sender, LocationChangedEventArgs e)
+    {
+        currentUrl = Nav.ToBaseRelativePath(e.Location);
+        StateHasChanged();
+    }
+    
+    protected override void OnInitialized()
+    {
+        currentUrl = Nav.ToBaseRelativePath(Nav.Uri);
+        Nav.LocationChanged += OnLocationChanged;
+    }
+    
+    public void Dispose()
+    {
+        Nav.LocationChanged -= OnLocationChanged;
+    }
+
 
     void ChangeTheme(string value)
     {
         ThemeService.SetTheme(value);
         StateHasChanged();
+    }
+    
+    private async Task Logout()
+    {
+        await SignInManager.SignOutAsync();
+        Nav.NavigateTo("/");
     }
 
 }

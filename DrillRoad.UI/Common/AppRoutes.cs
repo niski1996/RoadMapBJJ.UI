@@ -13,4 +13,6 @@ public static class AppRoutes
     public const string EditProfile = "EditProfile";
     public const string Account = "Account";
     public const string Info = "Info";
+    public const string Manage = $"{Account}/Manage";
+    public const string Notifications = $"{Account}/Notifications";
 }
