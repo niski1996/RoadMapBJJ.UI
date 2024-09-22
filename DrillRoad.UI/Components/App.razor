@@ -14,7 +14,7 @@
 </head>
 
 <body>
-<Routes @rendermode="InteractiveServer" />
+<Routes @rendermode="RenderModeForPage"/>
 <script src="_framework/blazor.web.js"></script>
 <script src="_content/Radzen.Blazor/Radzen.Blazor.js?v=@(typeof(Radzen.Colors).Assembly.GetName().Version)"></script>
 
@@ -27,6 +27,10 @@
 
     [Inject]
     private ThemeService ThemeService { get; set; }
+
+    private IComponentRenderMode? RenderModeForPage => HttpContext.Request.Path.StartsWithSegments("/Account")
+        ? null
+        : InteractiveServer;
 
     protected override void OnInitialized()
     {

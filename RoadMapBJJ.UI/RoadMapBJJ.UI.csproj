@@ -14,4 +14,20 @@
       <ProjectReference Include="..\..\RoadMapBJJ\RoadMapBJJ.Contracts\RoadMapBJJ.Contracts.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="Data\app.db">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore">
+        <HintPath>..\..\..\..\.nuget\packages\microsoft.aspnetcore.identity.entityframeworkcore\8.0.8\lib\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll</HintPath>
+      </Reference>
+      <Reference Include="Microsoft.EntityFrameworkCore">
+        <HintPath>..\..\..\..\.nuget\packages\microsoft.entityframeworkcore\8.0.8\lib\net8.0\Microsoft.EntityFrameworkCore.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
 </Project>

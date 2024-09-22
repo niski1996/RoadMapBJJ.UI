@@ -26,4 +26,12 @@
       </Content>
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Components\Pages\Account\Login.razor" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\RoadMapBJJ.UI\RoadMapBJJ.UI.csproj" />
+    </ItemGroup>
+
 </Project>

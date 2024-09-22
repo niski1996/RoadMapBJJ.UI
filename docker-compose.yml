@@ -4,3 +4,15 @@
     build:
       context: .
       dockerfile: DrillRoad.UI/Dockerfile
+
+  blazorapp1:
+    image: blazorapp1
+    build:
+      context: .
+      dockerfile: BlazorApp1/Dockerfile
+
+  blazorapp2:
+    image: blazorapp2
+    build:
+      context: .
+      dockerfile: BlazorApp2/Dockerfile

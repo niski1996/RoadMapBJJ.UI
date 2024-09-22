@@ -1,3 +1,5 @@
+using DrillRoad.UI.Data;
+using Microsoft.AspNetCore.Identity;
 using Radzen;
 using RoadMapBJJ.UI.Components;
 
@@ -8,6 +10,10 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 builder.Services.AddRadzenComponents();
+builder.Services.AddIdentityCore<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddSignInManager()
+    .AddDefaultTokenProviders();
 builder.Services.AddRadzenCookieThemeService(options =>
 {
     options.Name = "RoadMapTheme"; // The name of the cookie
