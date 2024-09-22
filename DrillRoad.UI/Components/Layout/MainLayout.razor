@@ -33,7 +33,15 @@
                                                        Path="@AppRoutes.Manage" Icon="person"></RadzenProfileMenuItem>
                                 <RadzenProfileMenuItem Text="Notification" Path="@AppRoutes.Notifications" Icon="notifications"></RadzenProfileMenuItem>
                                 <RadzenProfileMenuItem Text="Settings" Path="@AppRoutes.Settings" Icon="settings"></RadzenProfileMenuItem>
-                                <RadzenButton ButtonStyle="ButtonStyle.Warning" Click=Logout></RadzenButton>
+                            </Authorized>
+                            <NotAuthorized>
+                                <RadzenProfileMenuItem Text="Login" Path="@AppRoutes.Login" Icon="login"></RadzenProfileMenuItem>
+                                <RadzenProfileMenuItem Text="Register" Path="@AppRoutes.Register" Icon="app_registration"></RadzenProfileMenuItem>
+                            </NotAuthorized>
+                        </AuthorizeView>
+                        <RadzenProfileMenuItem Text="Info" Path="@AppRoutes.Info" Icon="info"></RadzenProfileMenuItem>
+                        <AuthorizeView>
+                            <Authorized>
                                 <div class="nav-item px-3">
                                     <form action="Account/Logout" method="post">
                                         <AntiforgeryToken/>
@@ -42,12 +50,7 @@
                                     </form>
                                 </div>
                             </Authorized>
-                            <NotAuthorized>
-                                <RadzenProfileMenuItem Text="Login" Path="@AppRoutes.Login" Icon="login"></RadzenProfileMenuItem>
-                                <RadzenProfileMenuItem Text="Register" Path="@AppRoutes.Register" Icon="app_registration"></RadzenProfileMenuItem>
-                            </NotAuthorized>
                         </AuthorizeView>
-                        <RadzenProfileMenuItem Text="Info" Path="@AppRoutes.Info" Icon="info"></RadzenProfileMenuItem>
                     </ChildContent>
                 </RadzenProfileMenu>
             </RadzenStack>
