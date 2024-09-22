@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using DrillRoad.UI.Components;
 using DrillRoad.UI.Components.Account;
 using DrillRoad.UI.Data;
+using Radzen;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +16,7 @@ builder.Services.AddCascadingAuthenticationState();
 builder.Services.AddScoped<IdentityUserAccessor>();
 builder.Services.AddScoped<IdentityRedirectManager>();
 builder.Services.AddScoped<AuthenticationStateProvider, IdentityRevalidatingAuthenticationStateProvider>();
+builder.Services.AddRadzenComponents();
 
 builder.Services.AddAuthentication(options =>
     {
