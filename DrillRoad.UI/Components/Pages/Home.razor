@@ -1,7 +1,16 @@
 ﻿@page "/"
 
+@code {
+    private void IncrementCount()
+    {
+        Console.WriteLine("kutas");
+    }
+}
+
 <PageTitle>Home</PageTitle>
 
 <h1>Hello, world!</h1>
+<RadzenButton Click="@(_=>Console.Write("dupa"))"></RadzenButton>
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
 Welcome to your new app.
