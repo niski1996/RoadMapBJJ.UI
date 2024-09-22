@@ -27,19 +27,17 @@
                     <ChildContent>
                         <AuthorizeView>
                             <Authorized>
-
+                                <RadzenProfileMenuItem Text="Account" Path="@AppRoutes.Login" Icon="person"></RadzenProfileMenuItem>
+                                <RadzenProfileMenuItem Text="Notification" Path="@AppRoutes.Login" Icon="notifications"></RadzenProfileMenuItem>
+                                <RadzenProfileMenuItem Text="Settings" Path="@AppRoutes.Login" Icon="settings"></RadzenProfileMenuItem>
+                                <RadzenProfileMenuItem Text="Logout" Path="@AppRoutes.Login" Icon="logout"></RadzenProfileMenuItem>
                             </Authorized>
                             <NotAuthorized>
                                 <RadzenProfileMenuItem Text="Login" Path="@AppRoutes.Login" Icon="login"></RadzenProfileMenuItem>
                                 <RadzenProfileMenuItem Text="Register" Path="@AppRoutes.Register" Icon="app_registration"></RadzenProfileMenuItem>
                             </NotAuthorized>
                         </AuthorizeView>
-                        <RadzenProfileMenuItem Text="Info" Path="buttons" Icon="account_circle"></RadzenProfileMenuItem>
-                        <RadzenProfileMenuItem Text="Edit Profile" Path="buttons" Icon="account_circle"></RadzenProfileMenuItem>
-                        <RadzenProfileMenuItem Text="Notifications" Path="buttons" Icon="account_circle"></RadzenProfileMenuItem>
-                        <RadzenProfileMenuItem Text="Notification" Path="notification" Icon="announcement"></RadzenProfileMenuItem>
-                        <RadzenProfileMenuItem Text="Settings" Path="notification" Icon="announcement"></RadzenProfileMenuItem>
-                        <RadzenProfileMenuItem Text="Logout" Path="@AppRoutes.Logout" Icon="account_circle"></RadzenProfileMenuItem>
+                        <RadzenProfileMenuItem Text="Info" Path="@AppRoutes.Info" Icon="info"></RadzenProfileMenuItem>
                     </ChildContent>
                 </RadzenProfileMenu>
             </RadzenStack>

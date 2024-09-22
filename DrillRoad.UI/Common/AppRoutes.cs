@@ -12,4 +12,5 @@ public static class AppRoutes
     public const string Logout = "Logout";
     public const string EditProfile = "EditProfile";
     public const string Account = "Acc";
+    public const string Info = "Info";
 }
